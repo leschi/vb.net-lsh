@@ -1,0 +1,34 @@
+Public Class Form1
+    Sub servercontrol()
+start:
+        If System.IO.File.Exists(Application.StartupPath & "\SQKN-SERVER\reboot.txt") Then
+            Process.Start(Application.StartupPath & "\restart.bat")
+            Threading.Thread.Sleep(2000)
+            My.Computer.FileSystem.DeleteFile(Application.StartupPath & "\SQKN-SERVER\reboot.txt")
+            Threading.Thread.Sleep(2000)
+        Else
+            Threading.Thread.Sleep(5000)
+        End If
+        If System.IO.File.Exists(Application.StartupPath & "\SQKN-SERVER\stopp.txt") Then
+            Process.Start(Application.StartupPath & "\stoppen.bat")
+            Threading.Thread.Sleep(2000)
+            My.Computer.FileSystem.DeleteFile(Application.StartupPath & "\SQKN-SERVER\stopp.txt")
+            Threading.Thread.Sleep(2000)
+        Else
+            Threading.Thread.Sleep(2000)
+        End If
+        If System.IO.File.Exists(Application.StartupPath & "\SQKN-SERVER\start.txt") Then
+            Process.Start(Application.StartupPath & "\start.bat")
+            Threading.Thread.Sleep(2000)
+            My.Computer.FileSystem.DeleteFile(Application.StartupPath & "\SQKN-SERVER\start.txt")
+            Threading.Thread.Sleep(2000)
+        Else
+            Threading.Thread.Sleep(2000)
+        End If
+        Threading.Thread.Sleep(2000)
+        GoTo start
+    End Sub
+    Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        servercontrol()
+    End Sub
+End Class
